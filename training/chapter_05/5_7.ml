@@ -9,21 +9,26 @@ let yase bmi =
 
 (* normal : float -> string *)
 let normal bmi =
-  bmi <= 18.5 && bmi < 25.0
+  18.5 <= bmi && bmi < 25.0
 
 (* himan : float -> string *)
 let himan bmi =
-  bmi <= 25.0 && bmi < 30.0
+  25.0 <= bmi && bmi < 30.0
 
-(* taikei : float -> string *)
-let kodo_himan = 
-  30.0 < bmi
+(* kodo_himan : float -> string *)
+let kodo_himan bmi = 
+  30.0 <= bmi
 
 (* taikei : float float -> string *)
 let taikei w h =
-  if yase bmi w h then "やせ"
+  if yase (bmi w h) then "やせ"
+  else if normal (bmi w h) then "標準"
+  else if himan (bmi w h) then "肥満"
+  else if kodo_himan (bmi w h) then "高度肥満"
+  else "不正な値です"
 
 (* テスト *)
 let test1 = taikei 50.0 1.7 = "やせ"
-let test2 = taikei 55.0 1.7 = "標準"
-let test3 = taikei 100.0 1.7 = "肥満"
+let test2 = taikei 60.0 1.7 = "標準"
+let test3 = taikei 80.0 1.7 = "肥満"
+let test4 = taikei 100.0 1.7 = "高度肥満"
