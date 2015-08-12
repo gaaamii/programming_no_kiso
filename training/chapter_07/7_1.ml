@@ -1,11 +1,26 @@
 (* 目的：国語,数学,英語,理科,社会の５教科の点数を与えられたら,その合計点と平均点を組にして返す *)
-(* goukei_to_heikin float * float * float * float * float -> float * float *)
-let goukei_to_heikin japanese math english science social_study =
-  (0.00, 0.00)
+(* goukei_to_heikin int * int * int * int * int -> int * int *)
+
+(* 目的：５教科の点数を与えられたら,その合計点を返す *)
+(* goukei : int -> int -> int -> int -> int -> int *)
+let goukei japanese math english science social_studies =
+  japanese + math + english + science + social_studies
+
+(* 目的：５教科の点数を与えられたら,その平均点を返す *)
+(* goukei : int -> int -> int -> int -> int -> int *)
+let heikin japanese math english science social_studies =
+  (japanese + math + english + science + social_studies ) / 5
+
+(* goukei_to_heikin : int -> int -> int -> int -> int -> int * int *)
+let goukei_to_heikin japanese math english science social_studies = 
+  (
+    goukei japanese math english science social_studies,
+    heikin japanese math english science social_studies
+  )
 
 (* テスト *)
-let test1 = goukei_to_heikin 100.0 100.0 100.0 100.0 100.0 = (500.0, 100.0)
-let test2 = goukei_to_heikin 100.0 80.0 100.0 100.0 100.0 = (480.0, 96.0)
-let test3 = goukei_to_heikin 100.0 60.0 100.0 100.0 100.0 = (460.0, 92.0) 
-let test4 = goukei_to_heikin 100.0 40.0 100.0 100.0 100.0 = (440.0, 88.0)
-let test5 = goukei_to_heikin 100.0 20.0 100.0 100.0 100.0 = (420.0, 84.0)
+let test1 = goukei_to_heikin 100 100 100 100 100 = (500, 100)
+let test2 = goukei_to_heikin 100 80 100 100 100 = (480, 96)
+let test3 = goukei_to_heikin 100 60 100 100 100 = (460, 92) 
+let test4 = goukei_to_heikin 100 40 100 100 100 = (440, 88)
+let test5 = goukei_to_heikin 100 20 100 100 100 = (420, 84)
